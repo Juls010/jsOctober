@@ -10,12 +10,24 @@
 
 console.log("Ejercicio 1: if simple");
 // Escribe una función llamada 'esAdultoMayor' que reciba una edad y devuelva true si es mayor de 65, false en caso contrario.
+
+function esAdultoMayor(edad){
+  if(edad > 65) return true;
+  else return false;
+}
+
 // Datos de prueba:
 console.log(esAdultoMayor(70)); // Debería mostrar: true
 console.log(esAdultoMayor(50)); // Debería mostrar: false
 
 console.log("\nEjercicio 2: if-else");
 // Escribe una función llamada 'verificarTemperatura' que reciba una temperatura (°C) y devuelva 'Hace calor' si es ≥30, 'Hace frío' si es <30.
+function verificarTemperatura(temp) {
+  if(temp >= 30) return 'Hace calor'
+  else return 'Hace frío'
+}
+
+
 // Datos de prueba:
 console.log(verificarTemperatura(32)); // Debería mostrar: 'Hace calor'
 console.log(verificarTemperatura(20)); // Debería mostrar: 'Hace frío'
@@ -23,6 +35,16 @@ console.log(verificarTemperatura(20)); // Debería mostrar: 'Hace frío'
 console.log("\nEjercicio 3: if-else if");
 // Escribe una función llamada 'clasificarEdad' que reciba una edad y devuelva:
 // 'Niño' si ≤12, 'Adolescente' si 13-17, 'Adulto' si 18-64, 'Adulto mayor' si ≥65
+
+function clasificarEdad(edad) {
+  if(edad <= 12) return 'Niño'
+  else if(edad >= 13 && edad <= 17) return 'Adolescente'
+  else if(edad >= 18 && edad <= 64) return 'Adulto'
+  else if(edad >= 65) return 'Adulto mayor'
+  else return 'Edad incorrecta'
+}
+
+
 // Datos de prueba:
 console.log(clasificarEdad(10)); // Debería mostrar: 'Niño'
 console.log(clasificarEdad(15)); // Debería mostrar: 'Adolescente'
@@ -31,6 +53,21 @@ console.log(clasificarEdad(70)); // Debería mostrar: 'Adulto mayor'
 
 console.log("\nEjercicio 4: switch");
 // Escribe una función llamada 'obtenerColor' que reciba un número del 1 al 3 y devuelva: 1 → 'Rojo', 2 → 'Verde', 3 → 'Azul', otro → 'Color desconocido'
+
+function obtenerColor(num){
+  switch (num) {
+    case 1:
+      return 'Rojo'
+    case 2: 
+      return 'Verde'
+    case 3: 
+      return 'Azul'
+    default:
+      return 'Color desconocido'
+  }
+}
+
+
 // Datos de prueba:
 console.log(obtenerColor(1)); // Debería mostrar: 'Rojo'
 console.log(obtenerColor(3)); // Debería mostrar: 'Azul'
@@ -38,12 +75,26 @@ console.log(obtenerColor(5)); // Debería mostrar: 'Color desconocido'
 
 console.log("\nEjercicio 5: Condicional ternario");
 // Escribe una función llamada 'esPositivo' que reciba un número y devuelva 'Positivo' si ≥0, 'Negativo' si <0
+
+function esPositivo(num){
+  return num >= 0 ? 'Positivo': 'Negativo';
+}
+
+
+
 // Datos de prueba:
 console.log(esPositivo(5));  // Debería mostrar: 'Positivo'
 console.log(esPositivo(-3)); // Debería mostrar: 'Negativo'
 
 console.log("\nEjercicio 6: Combinación de condicionales");
 // Escribe una función llamada 'puedeVotar' que reciba edad y nacionalidad ('sí' o 'no') y devuelva true si edad ≥18 y nacionalidad 'sí', false en caso contrario
+
+function puedeVotar(edad, nacionalidad) {
+  if(edad >= 18 && nacionalidad === 'sí') return true;
+  else return false;
+}
+
+
 // Datos de prueba:
 console.log(puedeVotar(20, 'sí'));  // Debería mostrar: true
 console.log(puedeVotar(16, 'sí'));  // Debería mostrar: false
@@ -55,23 +106,55 @@ console.log(puedeVotar(25, 'no'));  // Debería mostrar: false
 
 console.log("\nEjercicio 7: Bucle for");
 // Escribe una función llamada 'imprimirPares' que imprima los números pares del 2 al 20.
+function imprimirPares() {
+  for(let i = 1; i < 21; i++){
+    if(i % 2 === 0){
+      console.log(i)
+    }
+  }
+}
+
 // Datos de prueba:
 imprimirPares();
 // Debería imprimir: 2 4 6 8 10 12 14 16 18 20
 
 console.log("\nEjercicio 8: Bucle for (suma)");
 // Escribe una función llamada 'sumarPares' que sume todos los números pares hasta n
+
+function sumarPares(n){
+  let suma = 0;
+  for(let i = 1; i <= n; i++){
+    if(i % 2 === 0){
+      suma += i;
+    }
+  }
+  return suma;
+}
+
 // Datos de prueba:
 console.log(sumarPares(10)); // Debería mostrar: 30
 
 console.log("\nEjercicio 9: Bucle while");
 // Escribe una función llamada 'contarImpares' que cuente de 1 hasta n solo los números impares
+function contarImpares(n){
+  while (n > 0) {
+    
+  }
+}
+
 // Datos de prueba:
 contarImpares(10);
 // Debería imprimir: 1 3 5 7 9
 
 console.log("\nEjercicio 10: Bucle do-while");
 // Escribe una función llamada 'pedirContraseña' que simule pedir contraseña hasta que sea 'admin' usando un array de intentos
+function pedirContraseña() {
+  
+
+}
+
+
+
 // Datos de prueba:
 const intentos = ['1234', 'qwerty', 'admin'];
 pedirContraseña(intentos);
