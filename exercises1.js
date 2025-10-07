@@ -77,7 +77,7 @@ console.log("\nEjercicio 5: Condicional ternario");
 // Escribe una función llamada 'esPositivo' que reciba un número y devuelva 'Positivo' si ≥0, 'Negativo' si <0
 
 function esPositivo(num){
-  return num >= 0 ? 'Positivo': 'Negativo';
+    return num >= 0 ? 'Positivo': 'Negativo';
 }
 
 
@@ -137,8 +137,13 @@ console.log(sumarPares(10)); // Debería mostrar: 30
 console.log("\nEjercicio 9: Bucle while");
 // Escribe una función llamada 'contarImpares' que cuente de 1 hasta n solo los números impares
 function contarImpares(n){
-  while (n > 0) {
-    
+  let contador = 1;
+  let impar = 0;
+  while (contador <= n) {
+    if(contador % 2 !== 0){
+      console.log(impar= contador); 
+    }
+    contador ++;
   }
 }
 
@@ -166,11 +171,28 @@ pedirContraseña(intentos);
 
 console.log("\nEjercicio 11: Bucle for (array)");
 // Escribe una función llamada 'multiplicarArray' que reciba un array de números y devuelva el producto de todos ellos
+function multiplicarArray(array) {
+    let suma = 1;
+    for(let i = 0; i < array.length; i++){
+      suma = suma * array[i];
+    }
+    return suma;
+}
+
 // Datos de prueba:
 console.log(multiplicarArray([1, 2, 3, 4])); // Debería mostrar: 24
 
 console.log("\nEjercicio 12: Bucle while (factorial)");
 // Escribe una función llamada 'factorial' que reciba un número n y devuelva su factorial usando while
+function factorial(n){
+  let factorial = 1;
+  while(n > 1){
+    factorial = factorial * n; 
+    n--;
+  }
+  return factorial;
+}
+
 // Datos de prueba:
 console.log(factorial(5)); // Debería mostrar: 120
 
@@ -209,24 +231,36 @@ empleados.forEach(e => console.log(`${e.nombre} gana ${e.salario} euros`));
 
 console.log("\nEjercicio 16: map básico");
 // Utiliza map para crear un nuevo array con el cubo de cada número del array 'numeros'
+const cubos = numeros.map(num => num ** 3)
 // Datos de prueba:
 console.log(cubos);
 // Debería mostrar: [1, 8, 27, 64, 125]
 
 console.log("\nEjercicio 17: map con strings");
 // Utiliza map para crear un nuevo array con las palabras en mayúsculas
+const cadena = ['hola','mundo','js'];
+const mayus = cadena.map(palabra => palabra.toUpperCase()) ;
 // Datos de prueba:
 console.log(mayus);
 // Debería mostrar: ['HOLA', 'MUNDO', 'JS']
 
 console.log("\nEjercicio 18: map con objetos");
 // Utiliza map para crear un array con los salarios de los empleados
+const edades = empleados.map(salario => salario.salario)
 // Datos de prueba:
 console.log(edades);
 // Debería mostrar: [1200, 1500]
 
 console.log("\nEjercicio 19: Combinación map + forEach");
 // Primero usa map para obtener salarios y luego forEach para sumarlos
+let suma = 0;
+edades.forEach(edades => {
+  suma += edades;
+});
+
+console.log(`Las edades son: ${edades}`);
+console.log(`La suma de todas las edades es: ${suma}`)
+
 // Datos de prueba:
 // Salarios: 1200, 1500
 // Debería imprimir:
@@ -239,12 +273,26 @@ console.log("\nEjercicio 19: Combinación map + forEach");
 
 console.log("\nEjercicio 20: Tipos de funciones");
 // Crear función declarativa 'restar' y expresión 'modulo'
+function restar(a,b){
+  return a - b;
+}
+
+let modulo = function(a,b){
+  return a % b
+}
+
 // Datos de prueba:
 console.log(restar(10,3)); // Debería mostrar: 7
 console.log(modulo(10,3)); // Debería mostrar: 1
 
 console.log("\nEjercicio 21: Métodos");
 // Crear objeto 'banco' con métodos depositar, retirar y consultarSaldo
+const banco = {
+  saldo: 1000,
+  depositar: function(cant) {return this.saldo+=cant;},
+  retirar: function(cant) {return this.saldo-=cant;},
+  consultarSaldo: function() {return this.saldo;},
+}
 // Datos de prueba:
 console.log(banco.depositar(500)); // Debería mostrar: 1500
 console.log(banco.retirar(200));   // Debería mostrar: 1300
@@ -252,28 +300,60 @@ console.log(banco.consultarSaldo());// Debería mostrar: 1300
 
 console.log("\nEjercicio 22: Parámetros por defecto");
 // Crear función 'multiplicarPor' con factor por defecto = 2
+function multiplicarPor(a , b = 2){
+    return a * b;
+}
+
 // Datos de prueba:
 console.log(multiplicarPor(5));    // Debería mostrar: 10
 console.log(multiplicarPor(5,3));  // Debería mostrar: 15
 
 console.log("\nEjercicio 23: Funciones que retornan valores");
 // Crear función 'esMultiploDe5'
+function esMultiploDe5(num){
+  if(num % 5 === 0) return true;
+  else return false;
+}
+
 // Datos de prueba:
 console.log(esMultiploDe5(10)); // Debería mostrar: true
 console.log(esMultiploDe5(7));  // Debería mostrar: false
 
 console.log("\nEjercicio 24: Arrow functions");
 // Convertir función tradicional en arrow function 'sumarDos'
+
+const sumarDos = (num) =>{
+  return num + 2;
+}
+
 // Datos de prueba:
 console.log(sumarDos(5)); // Debería mostrar: 7
 
 console.log("\nEjercicio 25: Funciones como argumentos");
 // Crear función 'aplicarOperacionAvanzada' que reciba dos números y una función
 // Datos de prueba:
+function multiplicar(x, y){
+  return x * y;
+}
+
+function aplicarOperacionAvanzada(a, b, operacion){
+    return operacion(a, b);
+}
+
 console.log(aplicarOperacionAvanzada(3,4,multiplicar)); // Debería mostrar: 12
 
 console.log("\nEjercicio 26: Closure simple");
 // Crear función 'generadorDeID' que devuelva IDs incrementales
+let id = 0;
+
+function generadorDeID(){
+    id++
+    return id;
+}
+function nuevoID(){
+    return generadorDeID();
+}
+
 // Datos de prueba:
 console.log(nuevoID()); // Debería mostrar: 1
 console.log(nuevoID()); // Debería mostrar: 2
@@ -281,6 +361,15 @@ console.log(nuevoID()); // Debería mostrar: 3
 
 console.log("\nEjercicio 27: Closure con configuración");
 // Crear función 'contadorInicial' que empiece desde un número inicial
+let contador = 5;
+function contadorInicial() {
+    
+}
+
+function contarDesde5() {
+    contador += 1;
+    return contador;
+}
 // Datos de prueba:
 console.log(contarDesde5()); // Debería mostrar: 6
 console.log(contarDesde5()); // Debería mostrar: 7
@@ -291,246 +380,44 @@ console.log(contarDesde5()); // Debería mostrar: 7
 
 console.log("\nEjercicio 28: Condicional + bucle");
 // Crear función 'imprimirMultiplos' que reciba n y límite e imprima múltiplos de n
+function imprimirMultiplos(n, limite){
+    for(let i = 1; i <= limite; i++){
+      if(n % i === 0){
+      console.log(n) 
+    }  
+  }
+}
+
 // Datos de prueba:
 imprimirMultiplos(3,15);
 // Debería imprimir: 3 6 9 12 15
 
 console.log("\nEjercicio 29: Array + condicional");
 // Crear función 'filtrarPares' que devuelva solo los números pares de un array
+function filtrarPares(array){
+  let pares = [];
+  for(let i = 0; i <= array.length; i++){
+    if(array[i] % 2 === 0){
+      pares.push(array[i])
+    }
+  }
+  return pares;
+}
+
 // Datos de prueba:
 console.log(filtrarPares([1,2,3,4,5,6])); // Debería mostrar: [2,4,6]
 
 console.log("\nEjercicio 30: Objeto + map + función");
 // Crear función 'promediarEdades' que devuelva el promedio de edades de un array de personas
+const grupo = [
+  { nombre:'Petunia', edad: 30},
+  { nombre: 'Margarita', edad: 15},
+  { nombre: 'Rosa', edad: 13}
+]
+
+function promedioEdades(personas) {
+    const edades = personas.map(p => p.edad);
+    const suma = edades.map()
+}
 // Datos de prueba:
 console.log(promediarEdades(grupo)); // Debería mostrar: 28.333333333333332
-
-
-
-
-
-
-
-
-
-// ==============================
-// JAVASCRIPT EXERCISES OCTOBER
-// ==============================
-
-// ------------------------------
-// CONDITIONALS
-// ------------------------------
-
-console.log("Exercise 1: simple if");
-// Write a function called 'isSeniorAdult' that receives an age and returns true if greater than 65, false otherwise.
-// Test data:
-console.log(isSeniorAdult(70)); // Should display: true
-console.log(isSeniorAdult(50)); // Should display: false
-
-console.log("\nExercise 2: if-else");
-// Write a function called 'checkTemperature' that receives a temperature (°C) and returns 'Hot' if ≥30, 'Cold' if <30.
-// Test data:
-console.log(checkTemperature(32)); // Should display: 'Hot'
-console.log(checkTemperature(20)); // Should display: 'Cold'
-
-console.log("\nExercise 3: if-else if");
-// Write a function called 'classifyAge' that receives an age and returns:
-// 'Child' if ≤12, 'Teen' if 13-17, 'Adult' if 18-64, 'Senior' if ≥65
-// Test data:
-console.log(classifyAge(10)); // Should display: 'Child'
-console.log(classifyAge(15)); // Should display: 'Teen'
-console.log(classifyAge(30)); // Should display: 'Adult'
-console.log(classifyAge(70)); // Should display: 'Senior'
-
-console.log("\nExercise 4: switch");
-// Write a function called 'getColor' that receives a number 1-3 and returns: 1 → 'Red', 2 → 'Green', 3 → 'Blue', other → 'Unknown color'
-// Test data:
-console.log(getColor(1)); // Should display: 'Red'
-console.log(getColor(3)); // Should display: 'Blue'
-console.log(getColor(5)); // Should display: 'Unknown color'
-
-console.log("\nExercise 5: ternary");
-// Write a function called 'isPositive' that receives a number and returns 'Positive' if ≥0, 'Negative' if <0
-// Test data:
-console.log(isPositive(5));  // Should display: 'Positive'
-console.log(isPositive(-3)); // Should display: 'Negative'
-
-console.log("\nExercise 6: combined conditionals");
-// Write a function called 'canVote' that receives age and nationality ('yes'/'no') and returns true if age ≥18 and nationality 'yes', false otherwise
-// Test data:
-console.log(canVote(20, 'yes'));  // Should display: true
-console.log(canVote(16, 'yes'));  // Should display: false
-console.log(canVote(25, 'no'));   // Should display: false
-
-// ------------------------------
-// LOOPS
-// ------------------------------
-
-console.log("\nExercise 7: for loop");
-// Write a function called 'printEvens' that prints even numbers from 2 to 20
-// Test data:
-printEvens();
-// Should print: 2 4 6 8 10 12 14 16 18 20
-
-console.log("\nExercise 8: for loop (sum)");
-// Write a function called 'sumEvens' that sums all even numbers up to n
-// Test data:
-console.log(sumEvens(10)); // Should display: 30
-
-console.log("\nExercise 9: while loop");
-// Write a function called 'countOdds' that counts from 1 to n only odd numbers
-// Test data:
-countOdds(10);
-// Should print: 1 3 5 7 9
-
-console.log("\nExercise 10: do-while loop");
-// Write a function called 'askPassword' that simulates asking for a password until 'admin' is entered using an array of attempts
-// Test data:
-const attempts = ['1234', 'qwerty', 'admin'];
-askPassword(attempts);
-// Example output:
-// Attempt 1: 1234
-// Attempt 2: qwerty
-// Attempt 3: admin
-// Correct password!
-
-console.log("\nExercise 11: for loop (array)");
-// Write a function called 'multiplyArray' that receives an array of numbers and returns the product of all elements
-// Test data:
-console.log(multiplyArray([1, 2, 3, 4])); // Should display: 24
-
-console.log("\nExercise 12: while loop (factorial)");
-// Write a function called 'factorial' that receives a number n and returns its factorial using while
-// Test data:
-console.log(factorial(5)); // Should display: 120
-
-// ------------------------------
-// forEach and map
-// ------------------------------
-
-console.log("\nExercise 13: basic forEach");
-// Use forEach to print each number in the 'numbers' array squared
-// Test data:
-const numbers = [1, 2, 3, 4, 5];
-numbers.forEach(n => console.log(n*n));
-// Should print: 1 4 9 16 25
-
-console.log("\nExercise 14: forEach with index");
-// Use forEach to print each name in the 'names' array with its index
-// Test data:
-const names = ['Ana', 'John', 'Mary'];
-names.forEach((name,i) => console.log(`Name at index ${i}: ${name}`));
-// Should print:
-// Name at index 0: Ana
-// Name at index 1: John
-// Name at index 2: Mary
-
-console.log("\nExercise 15: forEach with objects");
-// Use forEach to print each employee's name and salary in the 'employees' array
-// Test data:
-const employees = [
-  { name: 'Luis', salary: 1200 },
-  { name: 'Eva', salary: 1500 },
-];
-employees.forEach(e => console.log(`${e.name} earns ${e.salary} euros`));
-// Should print:
-// Luis earns 1200 euros
-// Eva earns 1500 euros
-
-console.log("\nExercise 16: basic map");
-// Use map to create a new array with each number in 'numbers' cubed
-// Test data:
-console.log(cubes);
-// Should display: [1, 8, 27, 64, 125]
-
-console.log("\nExercise 17: map with strings");
-// Use map to create a new array with each word in uppercase
-// Test data:
-console.log(uppercaseWords);
-// Should display: ['HELLO', 'WORLD', 'JS']
-
-console.log("\nExercise 18: map with objects");
-// Use map to create an array with the salaries of all employees
-// Test data:
-console.log(salaries);
-// Should display: [1200, 1500]
-
-console.log("\nExercise 19: map + forEach combination");
-// First use map to get salaries, then use forEach to sum them
-// Test data:
-// Salaries: 1200, 1500
-// Should print:
-// Salaries are: [1200,1500]
-// The total sum of salaries is: 2700
-
-// ------------------------------
-// FUNCTIONS
-// ------------------------------
-
-console.log("\nExercise 20: function types");
-// Create declarative function 'subtract' and expression function 'modulo'
-// Test data:
-console.log(subtract(10,3)); // Should display: 7
-console.log(modulo(10,3));   // Should display: 1
-
-console.log("\nExercise 21: methods");
-// Create object 'bank' with methods deposit, withdraw, and checkBalance
-// Test data:
-console.log(bank.deposit(500)); // Should display: 1500
-console.log(bank.withdraw(200));// Should display: 1300
-console.log(bank.checkBalance());// Should display: 1300
-
-console.log("\nExercise 22: default parameters");
-// Create function 'multiplyBy' with default factor = 2
-// Test data:
-console.log(multiplyBy(5));    // Should display: 10
-console.log(multiplyBy(5,3));  // Should display: 15
-
-console.log("\nExercise 23: functions returning values");
-// Create function 'isMultipleOf5'
-// Test data:
-console.log(isMultipleOf5(10)); // Should display: true
-console.log(isMultipleOf5(7));  // Should display: false
-
-console.log("\nExercise 24: arrow functions");
-// Convert traditional function to arrow function 'addTwo'
-// Test data:
-console.log(addTwo(5)); // Should display: 7
-
-console.log("\nExercise 25: functions as arguments");
-// Create function 'applyAdvancedOperation' that receives two numbers and a function
-// Test data:
-console.log(applyAdvancedOperation(3,4,multiply)); // Should display: 12
-
-console.log("\nExercise 26: simple closure");
-// Create function 'idGenerator' that returns incremental IDs
-// Test data:
-console.log(newID()); // Should display: 1
-console.log(newID()); // Should display: 2
-console.log(newID()); // Should display: 3
-
-console.log("\nExercise 27: closure with initial value");
-// Create function 'counterFrom' that starts from a given number
-// Test data:
-console.log(countFrom5()); // Should display: 6
-console.log(countFrom5()); // Should display: 7
-
-// ------------------------------
-// COMBINED EXERCISES
-// ------------------------------
-
-console.log("\nExercise 28: conditional + loop");
-// Create function 'printMultiples' that receives n and limit and prints multiples of n
-// Test data:
-printMultiples(3,15);
-// Should print: 3 6 9 12 15
-
-console.log("\nExercise 29: array + conditional");
-// Create function 'filterEvens' that returns only even numbers from an array
-// Test data:
-console.log(filterEvens([1,2,3,4,5,6])); // Should display: [2,4,6]
-
-console.log("\nExercise 30: object + map + function");
-// Create function 'averageAge' that returns the average age from an array of people
-// Test data:
-console.log(averageAge(group)); // Should display: 28.333333333333332
